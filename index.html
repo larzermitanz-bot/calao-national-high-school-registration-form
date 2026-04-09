@@ -5,293 +5,283 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calao National High School Registration Form</title>
   <style>
-    * {
-      box-sizing: border-box;
+    :root {
+      --navy: #0b355d;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #5b6472;
+      --line: #d8dee8;
+      --button: #8ea6bb;
+      --badge: #e9ddbc;
+      --shadow: 0 1px 2px rgba(15, 23, 42, 0.08), 0 8px 24px rgba(15, 23, 42, 0.05);
     }
 
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #eef2f7;
-      color: #111827;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
     }
 
-    header {
-      background: #123f73;
-      color: white;
-      padding: 28px 20px 36px;
+    .topbar {
+      background: var(--navy);
+      color: #fff;
+      padding: 34px 20px 42px;
     }
 
-    .header-inner {
-      max-width: 1400px;
+    .topbar-inner {
+      max-width: 980px;
       margin: 0 auto;
       display: flex;
       align-items: center;
-      gap: 36px;
+      justify-content: center;
+      gap: 24px;
     }
 
-    .logo-wrap img {
-      width: 170px;
+    .seal {
+      width: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
+
+    .seal img {
+      width: 140px;
       height: auto;
-      display: block;
+      object-fit: contain;
     }
 
-    .title-wrap h1 {
+    .brand h1 {
       margin: 0;
-      font-size: 84px;
-      line-height: 0.95;
+      font-size: 66px;
+      line-height: 0.98;
+      letter-spacing: -1.8px;
       font-weight: 800;
-      letter-spacing: -2px;
     }
 
-    .title-wrap p {
-      margin: 20px 0 0;
-      font-size: 44px;
+    .brand p {
+      margin: 8px 0 0;
+      font-size: 31px;
+      color: rgba(255,255,255,0.92);
       font-weight: 400;
     }
 
     .hero {
+      max-width: 980px;
+      margin: 56px auto 22px;
       text-align: center;
-      padding: 70px 20px 30px;
+      padding: 0 20px;
     }
 
     .badge {
       display: inline-block;
-      background: #e6d6aa;
-      color: #111827;
-      padding: 18px 36px;
+      padding: 12px 24px;
+      background: var(--badge);
       border-radius: 999px;
-      font-size: 28px;
-      margin-bottom: 34px;
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 28px;
     }
 
     .hero h2 {
       margin: 0;
-      font-size: 90px;
-      line-height: 0.95;
-      color: #071433;
+      font-size: 64px;
+      line-height: 1.05;
+      letter-spacing: -1.6px;
       font-weight: 800;
-      letter-spacing: -2px;
     }
 
     .hero p {
-      max-width: 1300px;
-      margin: 34px auto 0;
-      font-size: 34px;
-      line-height: 1.45;
-      color: #5d6675;
+      max-width: 1080px;
+      margin: 24px auto 0;
+      font-size: 25px;
+      line-height: 1.55;
+      color: var(--muted);
     }
 
     .hero a {
-      display: inline-block;
-      margin-top: 40px;
-      color: #123f73;
-      font-size: 28px;
+      display: inline-flex;
+      gap: 12px;
+      align-items: center;
+      margin-top: 28px;
+      color: var(--navy);
       text-decoration: none;
-    }
-
-    .hero a:hover {
-      text-decoration: underline;
+      font-size: 19px;
+      font-weight: 500;
     }
 
     .divider {
-      max-width: 1500px;
-      margin: 48px auto 0;
-      border-top: 1px solid #d7dde5;
+      border-top: 1px solid #d1d9e5;
+      margin-top: 38px;
     }
 
-    .page-wrap {
-      max-width: 1500px;
-      margin: 40px auto 80px;
-      padding: 0 20px;
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
     }
 
-    .status {
-      max-width: 1500px;
-      margin: 0 auto 20px;
-      padding: 16px 20px;
-      border-radius: 14px;
-      font-size: 22px;
-      font-weight: 700;
-      display: none;
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 28px 28px 32px;
+      margin: 24px auto;
     }
 
-    .status.success {
-      display: block;
-      background: #eaf8ea;
-      color: #166534;
-      border: 1px solid #b8e0b8;
-    }
-
-    .status.error {
-      display: block;
-      background: #fef2f2;
-      color: #991b1b;
-      border: 1px solid #fecaca;
-    }
-
-    .main-card {
-      background: #ffffff;
-      border-radius: 26px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      padding: 26px;
-    }
-
-    .main-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 28px;
-    }
-
-    .panel {
-      background: #f7f7f7;
-      border-radius: 22px;
-      padding: 26px;
-    }
-
-    .panel h3 {
-      margin: 0 0 22px;
-      font-size: 26px;
+    .card h3 {
+      margin: 0;
+      font-size: 25px;
       font-weight: 800;
     }
 
-    .field {
-      margin-bottom: 18px;
+    .card .sub {
+      margin: 12px 0 28px;
+      color: var(--muted);
+      font-size: 18px;
     }
 
-    .field label {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .field.full { grid-column: 1 / -1; }
+
+    label {
       display: block;
       margin-bottom: 10px;
       font-size: 18px;
       font-weight: 700;
-      color: #1f2937;
+      color: #111827;
     }
 
-    .field input {
+    input, select {
       width: 100%;
-      padding: 18px 18px;
-      border: 1px solid #d1d5db;
+      border: 1px solid #d7dde7;
       border-radius: 14px;
-      font-size: 22px;
-      background: white;
+      background: #fff;
+      padding: 18px 18px;
+      font-size: 18px;
+      color: #111827;
       outline: none;
     }
 
-    .field input:focus {
-      border-color: #123f73;
-      box-shadow: 0 0 0 4px rgba(18, 63, 115, 0.1);
+    input::placeholder {
+      color: #9aa3af;
     }
 
-    .submit-btn {
-      width: 100%;
+    input:focus, select:focus {
+      border-color: #94a3b8;
+      box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.14);
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 17px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .checkbox-row input {
+      width: 30px;
+      height: 30px;
+      margin: 0;
+      accent-color: var(--navy);
+    }
+
+    .actions {
+      text-align: center;
+      padding-top: 18px;
+    }
+
+    button {
+      background: var(--button);
+      color: #fff;
       border: none;
-      background: #184ea8;
-      color: white;
-      font-size: 22px;
-      padding: 18px;
       border-radius: 14px;
+      padding: 19px 38px;
+      font-size: 19px;
+      font-weight: 700;
       cursor: pointer;
-      margin-top: 8px;
+      min-width: 330px;
     }
 
-    .submit-btn:hover {
-      background: #123f73;
-    }
-
-    .preview-line {
-      font-size: 22px;
-      margin: 0 0 22px;
-      line-height: 1.5;
-    }
-
-    .preview-line strong {
-      display: inline-block;
-      min-width: 170px;
-    }
-
-    .saved-title {
-      margin-top: 36px;
-      font-size: 22px;
-      font-weight: 800;
-    }
-
-    .saved-item {
-      padding: 12px 0;
-      border-bottom: 1px solid #ddd;
+    .footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.95);
+      text-align: center;
+      padding: 26px 20px;
       font-size: 18px;
+      margin-top: 50px;
     }
 
-    @media (max-width: 1200px) {
-      .title-wrap h1 {
-        font-size: 64px;
-      }
-
-      .title-wrap p {
-        font-size: 34px;
-      }
-
-      .hero h2 {
-        font-size: 64px;
-      }
-
-      .hero p {
-        font-size: 26px;
-      }
-
-      .badge,
-      .hero a {
-        font-size: 22px;
-      }
+    .success {
+      display: none;
+      max-width: 1080px;
+      margin: 18px auto 0;
+      background: #e8f7e8;
+      color: #166534;
+      border: 1px solid #b7e0b8;
+      border-radius: 14px;
+      padding: 16px 18px;
+      font-size: 17px;
+      font-weight: 700;
     }
 
-    @media (max-width: 900px) {
-      .header-inner {
-        flex-direction: column;
-        text-align: center;
-      }
+    .error {
+      display: none;
+      max-width: 1080px;
+      margin: 18px auto 0;
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+      border-radius: 14px;
+      padding: 16px 18px;
+      font-size: 17px;
+      font-weight: 700;
+    }
 
-      .main-grid {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 1100px) {
+      .brand h1 { font-size: 54px; }
+      .brand p { font-size: 25px; }
+      .hero h2 { font-size: 48px; }
+      .hero p { font-size: 21px; }
+    }
 
-      .title-wrap h1 {
-        font-size: 48px;
-      }
-
-      .title-wrap p {
-        font-size: 28px;
-      }
-
-      .hero h2 {
-        font-size: 48px;
-      }
-
-      .hero p {
-        font-size: 20px;
-      }
-
-      .badge {
-        font-size: 18px;
-        padding: 14px 24px;
-      }
-
-      .hero a {
-        font-size: 18px;
-      }
-
-      .logo-wrap img {
-        width: 120px;
-      }
+    @media (max-width: 820px) {
+      .topbar-inner { flex-direction: column; text-align: center; }
+      .brand h1 { font-size: 42px; }
+      .brand p { font-size: 22px; }
+      .hero h2 { font-size: 38px; }
+      .hero p { font-size: 18px; }
+      .badge { font-size: 16px; }
+      .grid, .grid-3 { grid-template-columns: 1fr; }
+      button { width: 100%; min-width: 0; }
+      .card { padding: 22px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="header-inner">
-      <div class="logo-wrap">
-        <img src="logo.png" alt="Calao NHS Logo" />
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="seal" aria-hidden="true">
+        <img src="230617977_109992421301540_6067586315127765631_n-removebg-preview.png" alt="Calao NHS Logo" />
       </div>
-      <div class="title-wrap">
+      <div class="brand">
         <h1>Calao National High School</h1>
         <p>Registration Form</p>
       </div>
@@ -300,161 +290,161 @@
 
   <section class="hero">
     <div class="badge">School Year 2026-2027</div>
-    <h2>Membership Registration<br>Now Open</h2>
+    <h2>Membership Registration Now Open</h2>
     <p>
-      Join a group of students committed to academic excellence. Complete the
+      Join an elite group of students committed to academic excellence. Complete the
       application below to be considered for Calao National High School membership.
     </p>
     <a href="#" onclick="return false;">↗ Check DepEd Guidelines and Details</a>
     <div class="divider"></div>
   </section>
 
-  <div class="page-wrap">
-    <div id="statusBox" class="status"></div>
+  <div id="successBox" class="success">Registration submitted successfully.</div>
+  <div id="errorBox" class="error">Submission failed. Please check your Google Apps Script deployment and permissions.</div>
 
-    <div class="main-card">
-      <div class="main-grid">
-        <div class="panel">
-          <form id="registration-form">
-            <div class="field">
-              <label for="lrn">LRN</label>
-              <input type="text" id="lrn" name="lrn" placeholder="LRN" required />
-            </div>
-
-            <div class="field">
-              <label for="name">Learner Name</label>
-              <input type="text" id="name" name="name" placeholder="Learner Name" required />
-            </div>
-
-            <div class="field">
-              <label for="age">Age</label>
-              <input type="number" id="age" name="age" placeholder="Age" required />
-            </div>
-
-            <div class="field">
-              <label for="address">Address</label>
-              <input type="text" id="address" name="address" placeholder="Address" required />
-            </div>
-
-            <div class="field">
-              <label for="guardian">Guardian Info</label>
-              <input type="text" id="guardian" name="guardian" placeholder="Guardian Info" required />
-            </div>
-
-            <div class="field">
-              <label for="school">Schooling Details</label>
-              <input type="text" id="school" name="school" placeholder="Schooling Details" required />
-            </div>
-
-            <button type="submit" class="submit-btn">Register</button>
-          </form>
+  <main class="wrap">
+    <form id="registrationForm">
+      <section class="card">
+        <h3>Student Information</h3>
+        <div class="sub">Please provide your personal and academic details</div>
+        <div class="grid-3">
+          <div class="field">
+            <label for="firstName">First Name *</label>
+            <input id="firstName" name="firstName" placeholder="Juan" required />
+          </div>
+          <div class="field">
+            <label for="middleName">Middle Name</label>
+            <input id="middleName" name="middleName" placeholder="Santos" />
+          </div>
+          <div class="field">
+            <label for="lastName">Last Name *</label>
+            <input id="lastName" name="lastName" placeholder="Dela Cruz" required />
+          </div>
+          <div class="field">
+            <label for="lrn">Learner Reference Number (LRN) *</label>
+            <input id="lrn" name="lrn" placeholder="123456789012" maxlength="12" required />
+          </div>
+          <div class="field">
+            <label for="birthDate">Birth Date *</label>
+            <input id="birthDate" name="birthDate" type="date" required />
+          </div>
+          <div class="field">
+            <label for="gradeLevel">Grade Level *</label>
+            <select id="gradeLevel" name="gradeLevel" required>
+              <option value="">Select grade</option>
+              <option>Grade 7</option>
+              <option>Grade 8</option>
+              <option>Grade 9</option>
+              <option>Grade 10</option>
+              <option>Grade 11</option>
+              <option>Grade 12</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="address">Address *</label>
+            <input id="address" name="address" placeholder="Barangay, Municipality, Province" required />
+          </div>
         </div>
+      </section>
 
-        <div class="panel">
-          <h3>Live Preview</h3>
-
-          <p class="preview-line"><strong>Name:</strong> <span id="live-name"></span></p>
-          <p class="preview-line"><strong>LRN:</strong> <span id="live-lrn"></span></p>
-          <p class="preview-line"><strong>Age:</strong> <span id="live-age"></span></p>
-          <p class="preview-line"><strong>Address:</strong> <span id="live-address"></span></p>
-          <p class="preview-line"><strong>Guardian:</strong> <span id="live-guardian"></span></p>
-          <p class="preview-line"><strong>School:</strong> <span id="live-school"></span></p>
-
-          <div class="saved-title">Saved Registrations</div>
-          <div id="saved"></div>
+      <section class="card">
+        <h3>Parent/Guardian Information</h3>
+        <div class="sub">Contact information for your parent or guardian</div>
+        <div class="grid">
+          <div class="field full">
+            <label for="guardianName">Parent/Guardian Name *</label>
+            <input id="guardianName" name="guardianName" placeholder="Full name of parent or guardian" required />
+          </div>
+          <div class="field">
+            <label for="guardianEmail">Parent/Guardian Email *</label>
+            <input id="guardianEmail" name="guardianEmail" type="email" placeholder="parent@email.com" required />
+          </div>
+          <div class="field">
+            <label for="guardianPhone">Parent/Guardian Phone *</label>
+            <input id="guardianPhone" name="guardianPhone" type="tel" placeholder="09XX XXX XXXX" required />
+          </div>
         </div>
+      </section>
+
+      <section class="card">
+        <h3>Agreement</h3>
+        <div class="sub">Please read and acknowledge the following</div>
+        <label class="checkbox-row">
+          <input type="checkbox" id="agreement" required />
+          <span>I certify that all information provided in this registration is accurate and complete. *</span>
+        </label>
+      </section>
+
+      <div class="actions">
+        <button type="submit">Submit Application</button>
       </div>
-    </div>
-  </div>
+    </form>
+  </main>
+
+  <footer class="footer">
+    Calao National High School - CNHS Registration | School Year 2026-2027
+  </footer>
 
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbynHa16-UpECuS2Pf6R78_X9qCRjifMJAd4UR63n-itTufTYlSqWFN9_Ea-krJ9ysfLBg/exec";
+    const form = document.getElementById('registrationForm');
+    const successBox = document.getElementById('successBox');
+    const errorBox = document.getElementById('errorBox');
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzPIcD4O59CNdbpN5woGjH33dZuDhlk0nw9za811Bra8FwoafazTAS1BTRu-UTERra_TQ/exec';
 
-    const form = document.getElementById('registration-form');
-    const statusBox = document.getElementById('statusBox');
-
-    const lrn = document.getElementById('lrn');
-    const nameInput = document.getElementById('name');
-    const age = document.getElementById('age');
-    const address = document.getElementById('address');
-    const guardian = document.getElementById('guardian');
-    const school = document.getElementById('school');
-
-    const liveName = document.getElementById('live-name');
-    const liveLrn = document.getElementById('live-lrn');
-    const liveAge = document.getElementById('live-age');
-    const liveAddress = document.getElementById('live-address');
-    const liveGuardian = document.getElementById('live-guardian');
-    const liveSchool = document.getElementById('live-school');
-
-    const saved = document.getElementById('saved');
-
-    let dataList = JSON.parse(localStorage.getItem('dataList')) || [];
-
-    function showStatus(message, type) {
-      statusBox.textContent = message;
-      statusBox.className = 'status ' + type;
-    }
-
-    function updateLive() {
-      liveName.textContent = nameInput.value;
-      liveLrn.textContent = lrn.value;
-      liveAge.textContent = age.value;
-      liveAddress.textContent = address.value;
-      liveGuardian.textContent = guardian.value;
-      liveSchool.textContent = school.value;
-    }
-
-    function display() {
-      saved.innerHTML = '';
-      dataList.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'saved-item';
-        div.textContent = item.name + ' - ' + item.lrn;
-        saved.appendChild(div);
-      });
-    }
-
-    form.addEventListener('input', updateLive);
-
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
+      successBox.style.display = 'none';
+      errorBox.style.display = 'none';
 
-      const formData = new FormData(form);
+      const lrn = document.getElementById('lrn').value.trim();
+      if (!/^\d{12}$/.test(lrn)) {
+        alert('LRN must contain exactly 12 digits.');
+        return;
+      }
+
+      const payload = {
+        firstName: document.getElementById('firstName').value.trim(),
+        middleName: document.getElementById('middleName').value.trim(),
+        lastName: document.getElementById('lastName').value.trim(),
+        lrn: lrn,
+        birthDate: document.getElementById('birthDate').value,
+        gradeLevel: document.getElementById('gradeLevel').value,
+        address: document.getElementById('address').value.trim(),
+        guardianName: document.getElementById('guardianName').value.trim(),
+        guardianEmail: document.getElementById('guardianEmail').value.trim(),
+        guardianPhone: document.getElementById('guardianPhone').value.trim()
+      };
 
       try {
         const response = await fetch(scriptURL, {
           method: 'POST',
-          body: formData
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(payload)
         });
 
-        const result = await response.text();
-
-        if (result.toLowerCase().includes('success')) {
-          const record = {
-            name: nameInput.value,
-            lrn: lrn.value
-          };
-
-          dataList.push(record);
-          localStorage.setItem('dataList', JSON.stringify(dataList));
-
-          display();
-          form.reset();
-          updateLive();
-          showStatus('Submitted successfully!', 'success');
-        } else {
-          console.log(result);
-          showStatus('Submission failed!', 'error');
+        const text = await response.text();
+        let result = {};
+        try {
+          result = JSON.parse(text);
+        } catch (_) {
+          result = { success: response.ok };
         }
-      } catch (err) {
-        console.error(err);
-        showStatus('Submission failed!', 'error');
+
+        if (response.ok && (result.success !== false)) {
+          successBox.style.display = 'block';
+          successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          form.reset();
+        } else {
+          errorBox.style.display = 'block';
+          errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } catch (error) {
+        errorBox.style.display = 'block';
+        errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     });
-
-    display();
-    updateLive();
   </script>
 </body>
 </html>
