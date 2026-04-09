@@ -1,216 +1,460 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calao NHS Registration</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calao National High School Registration Form</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-<style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #eef2f7;
-}
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #eef2f7;
+      color: #111827;
+    }
 
-/* HEADER */
-header {
-    background: #0d47a1;
-    color: white;
-    text-align: center;
-    padding: 20px;
-}
+    header {
+      background: #123f73;
+      color: white;
+      padding: 28px 20px 36px;
+    }
 
-.logo {
-    width: 80px;
-    margin-bottom: 10px;
-}
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
 
-/* CARD DESIGN */
-.main {
-    max-width: 1100px;
-    margin: auto;
-    padding: 20px;
-}
+    .logo-wrap img {
+      width: 170px;
+      height: auto;
+      display: block;
+    }
 
-.card {
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
+    .title-wrap h1 {
+      margin: 0;
+      font-size: 84px;
+      line-height: 0.95;
+      font-weight: 800;
+      letter-spacing: -2px;
+    }
 
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
+    .title-wrap p {
+      margin: 20px 0 0;
+      font-size: 44px;
+      font-weight: 400;
+    }
 
-/* INPUT */
-input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-}
+    .hero {
+      text-align: center;
+      padding: 70px 20px 30px;
+    }
 
-/* BUTTON */
-button {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: none;
-    background: #0d47a1;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-}
+    .badge {
+      display: inline-block;
+      background: #e6d6aa;
+      color: #111827;
+      padding: 18px 36px;
+      border-radius: 999px;
+      font-size: 28px;
+      margin-bottom: 34px;
+    }
 
-button:hover {
-    background: #1565c0;
-}
+    .hero h2 {
+      margin: 0;
+      font-size: 90px;
+      line-height: 0.95;
+      color: #071433;
+      font-weight: 800;
+      letter-spacing: -2px;
+    }
 
-/* LIVE PANEL */
-.live-box {
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 10px;
-}
+    .hero p {
+      max-width: 1300px;
+      margin: 34px auto 0;
+      font-size: 34px;
+      line-height: 1.45;
+      color: #5d6675;
+    }
 
-/* MOBILE */
-@media(max-width:768px){
-    .grid { grid-template-columns: 1fr; }
-}
-</style>
+    .hero a {
+      display: inline-block;
+      margin-top: 40px;
+      color: #123f73;
+      font-size: 28px;
+      text-decoration: none;
+    }
+
+    .hero a:hover {
+      text-decoration: underline;
+    }
+
+    .divider {
+      max-width: 1500px;
+      margin: 48px auto 0;
+      border-top: 1px solid #d7dde5;
+    }
+
+    .page-wrap {
+      max-width: 1500px;
+      margin: 40px auto 80px;
+      padding: 0 20px;
+    }
+
+    .status {
+      max-width: 1500px;
+      margin: 0 auto 20px;
+      padding: 16px 20px;
+      border-radius: 14px;
+      font-size: 22px;
+      font-weight: 700;
+      display: none;
+    }
+
+    .status.success {
+      display: block;
+      background: #eaf8ea;
+      color: #166534;
+      border: 1px solid #b8e0b8;
+    }
+
+    .status.error {
+      display: block;
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    .main-card {
+      background: #ffffff;
+      border-radius: 26px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      padding: 26px;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 28px;
+    }
+
+    .panel {
+      background: #f7f7f7;
+      border-radius: 22px;
+      padding: 26px;
+    }
+
+    .panel h3 {
+      margin: 0 0 22px;
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 18px 18px;
+      border: 1px solid #d1d5db;
+      border-radius: 14px;
+      font-size: 22px;
+      background: white;
+      outline: none;
+    }
+
+    .field input:focus {
+      border-color: #123f73;
+      box-shadow: 0 0 0 4px rgba(18, 63, 115, 0.1);
+    }
+
+    .submit-btn {
+      width: 100%;
+      border: none;
+      background: #184ea8;
+      color: white;
+      font-size: 22px;
+      padding: 18px;
+      border-radius: 14px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    .submit-btn:hover {
+      background: #123f73;
+    }
+
+    .preview-line {
+      font-size: 22px;
+      margin: 0 0 22px;
+      line-height: 1.5;
+    }
+
+    .preview-line strong {
+      display: inline-block;
+      min-width: 170px;
+    }
+
+    .saved-title {
+      margin-top: 36px;
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .saved-item {
+      padding: 12px 0;
+      border-bottom: 1px solid #ddd;
+      font-size: 18px;
+    }
+
+    @media (max-width: 1200px) {
+      .title-wrap h1 {
+        font-size: 64px;
+      }
+
+      .title-wrap p {
+        font-size: 34px;
+      }
+
+      .hero h2 {
+        font-size: 64px;
+      }
+
+      .hero p {
+        font-size: 26px;
+      }
+
+      .badge,
+      .hero a {
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .header-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .title-wrap h1 {
+        font-size: 48px;
+      }
+
+      .title-wrap p {
+        font-size: 28px;
+      }
+
+      .hero h2 {
+        font-size: 48px;
+      }
+
+      .hero p {
+        font-size: 20px;
+      }
+
+      .badge {
+        font-size: 18px;
+        padding: 14px 24px;
+      }
+
+      .hero a {
+        font-size: 18px;
+      }
+
+      .logo-wrap img {
+        width: 120px;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <header>
+    <div class="header-inner">
+      <div class="logo-wrap">
+        <img src="logo.png" alt="Calao NHS Logo" />
+      </div>
+      <div class="title-wrap">
+        <h1>Calao National High School</h1>
+        <p>Registration Form</p>
+      </div>
+    </div>
+  </header>
 
-<header>
-    <img src="logo.png" class="logo">
-    <h2>Calao National High School</h2>
-    <p>Student Registration Form</p>
-</header>
+  <section class="hero">
+    <div class="badge">School Year 2026-2027</div>
+    <h2>Membership Registration<br>Now Open</h2>
+    <p>
+      Join a group of students committed to academic excellence. Complete the
+      application below to be considered for Calao National High School membership.
+    </p>
+    <a href="#" onclick="return false;">↗ Check DepEd Guidelines and Details</a>
+    <div class="divider"></div>
+  </section>
 
-<div class="main">
+  <div class="page-wrap">
+    <div id="statusBox" class="status"></div>
 
-<div class="card grid">
+    <div class="main-card">
+      <div class="main-grid">
+        <div class="panel">
+          <form id="registration-form">
+            <div class="field">
+              <label for="lrn">LRN</label>
+              <input type="text" id="lrn" name="lrn" placeholder="LRN" required />
+            </div>
 
-<!-- FORM -->
-<div>
-<form id="registrationForm">
+            <div class="field">
+              <label for="name">Learner Name</label>
+              <input type="text" id="name" name="name" placeholder="Learner Name" required />
+            </div>
 
-<input name="lrn" id="lrn" placeholder="LRN" required>
-<input name="name" id="name" placeholder="Learner Name" required>
-<input name="age" id="age" placeholder="Age" required>
-<input name="address" id="address" placeholder="Address" required>
-<input name="guardian" id="guardian" placeholder="Guardian Info" required>
-<input name="school" id="school" placeholder="Schooling Details" required>
+            <div class="field">
+              <label for="age">Age</label>
+              <input type="number" id="age" name="age" placeholder="Age" required />
+            </div>
 
-<button type="submit">Register</button>
+            <div class="field">
+              <label for="address">Address</label>
+              <input type="text" id="address" name="address" placeholder="Address" required />
+            </div>
 
-<p id="status"></p>
+            <div class="field">
+              <label for="guardian">Guardian Info</label>
+              <input type="text" id="guardian" name="guardian" placeholder="Guardian Info" required />
+            </div>
 
-</form>
-</div>
+            <div class="field">
+              <label for="school">Schooling Details</label>
+              <input type="text" id="school" name="school" placeholder="Schooling Details" required />
+            </div>
 
-<!-- LIVE PANEL -->
-<div class="live-box">
+            <button type="submit" class="submit-btn">Register</button>
+          </form>
+        </div>
 
-<h3>Live Preview</h3>
+        <div class="panel">
+          <h3>Live Preview</h3>
 
-<p><b>Name:</b> <span id="live-name"></span></p>
-<p><b>LRN:</b> <span id="live-lrn"></span></p>
-<p><b>Age:</b> <span id="live-age"></span></p>
-<p><b>Address:</b> <span id="live-address"></span></p>
-<p><b>Guardian:</b> <span id="live-guardian"></span></p>
+          <p class="preview-line"><strong>Name:</strong> <span id="live-name"></span></p>
+          <p class="preview-line"><strong>LRN:</strong> <span id="live-lrn"></span></p>
+          <p class="preview-line"><strong>Age:</strong> <span id="live-age"></span></p>
+          <p class="preview-line"><strong>Address:</strong> <span id="live-address"></span></p>
+          <p class="preview-line"><strong>Guardian:</strong> <span id="live-guardian"></span></p>
+          <p class="preview-line"><strong>School:</strong> <span id="live-school"></span></p>
 
-<h4>Saved</h4>
-<div id="saved"></div>
+          <div class="saved-title">Saved Registrations</div>
+          <div id="saved"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-</div>
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbynHa16-UpECuS2Pf6R78_X9qCRjifMJAd4UR63n-itTufTYlSqWFN9_Ea-krJ9ysfLBg/exec";
 
-</div>
+    const form = document.getElementById('registration-form');
+    const statusBox = document.getElementById('statusBox');
 
-</div>
+    const lrn = document.getElementById('lrn');
+    const nameInput = document.getElementById('name');
+    const age = document.getElementById('age');
+    const address = document.getElementById('address');
+    const guardian = document.getElementById('guardian');
+    const school = document.getElementById('school');
 
-<script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbynHa16-UpECuS2Pf6R78_X9qCRjifMJAd4UR63n-itTufTYlSqWFN9_Ea-krJ9ysfLBg/exec";
+    const liveName = document.getElementById('live-name');
+    const liveLrn = document.getElementById('live-lrn');
+    const liveAge = document.getElementById('live-age');
+    const liveAddress = document.getElementById('live-address');
+    const liveGuardian = document.getElementById('live-guardian');
+    const liveSchool = document.getElementById('live-school');
 
-const form = document.getElementById('registrationForm');
+    const saved = document.getElementById('saved');
 
-const lrn = document.getElementById('lrn');
-const name = document.getElementById('name');
-const age = document.getElementById('age');
-const address = document.getElementById('address');
-const guardian = document.getElementById('guardian');
+    let dataList = JSON.parse(localStorage.getItem('dataList')) || [];
 
-const liveName = document.getElementById('live-name');
-const liveLrn = document.getElementById('live-lrn');
-const liveAge = document.getElementById('live-age');
-const liveAddress = document.getElementById('live-address');
-const liveGuardian = document.getElementById('live-guardian');
+    function showStatus(message, type) {
+      statusBox.textContent = message;
+      statusBox.className = 'status ' + type;
+    }
 
-const saved = document.getElementById('saved');
-const status = document.getElementById('status');
+    function updateLive() {
+      liveName.textContent = nameInput.value;
+      liveLrn.textContent = lrn.value;
+      liveAge.textContent = age.value;
+      liveAddress.textContent = address.value;
+      liveGuardian.textContent = guardian.value;
+      liveSchool.textContent = school.value;
+    }
 
-let list = JSON.parse(localStorage.getItem('list')) || [];
+    function display() {
+      saved.innerHTML = '';
+      dataList.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'saved-item';
+        div.textContent = item.name + ' - ' + item.lrn;
+        saved.appendChild(div);
+      });
+    }
 
-function updateLive(){
-    liveName.textContent = name.value;
-    liveLrn.textContent = lrn.value;
-    liveAge.textContent = age.value;
-    liveAddress.textContent = address.value;
-    liveGuardian.textContent = guardian.value;
-}
+    form.addEventListener('input', updateLive);
 
-form.addEventListener('input', updateLive);
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
 
-form.addEventListener('submit', async (e)=>{
-    e.preventDefault();
+      const formData = new FormData(form);
 
-    const formData = new FormData(form);
-
-    try{
-        await fetch(scriptURL, {
-            method: 'POST',
-            body: formData
+      try {
+        const response = await fetch(scriptURL, {
+          method: 'POST',
+          body: formData
         });
 
-        let record = {
-            name: name.value,
+        const result = await response.text();
+
+        if (result.toLowerCase().includes('success')) {
+          const record = {
+            name: nameInput.value,
             lrn: lrn.value
-        };
+          };
 
-        list.push(record);
-        localStorage.setItem('list', JSON.stringify(list));
+          dataList.push(record);
+          localStorage.setItem('dataList', JSON.stringify(dataList));
 
-        display();
-
-        form.reset();
-        updateLive();
-
-        status.innerText = "Submitted!";
-        status.style.color = "green";
-
-    }catch(err){
-        status.innerText = "Error!";
-        status.style.color = "red";
-    }
-});
-
-function display(){
-    saved.innerHTML = '';
-    list.forEach(r=>{
-        let div = document.createElement('div');
-        div.innerText = r.name + " - " + r.lrn;
-        saved.appendChild(div);
+          display();
+          form.reset();
+          updateLive();
+          showStatus('Submitted successfully!', 'success');
+        } else {
+          console.log(result);
+          showStatus('Submission failed!', 'error');
+        }
+      } catch (err) {
+        console.error(err);
+        showStatus('Submission failed!', 'error');
+      }
     });
-}
 
-display();
-updateLive();
-</script>
-
+    display();
+    updateLive();
+  </script>
 </body>
 </html>
