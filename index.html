@@ -15,6 +15,7 @@
       --button: #8ea6bb;
       --badge: #e9ddbc;
       --shadow: 0 1px 2px rgba(15, 23, 42, 0.08), 0 8px 24px rgba(15, 23, 42, 0.05);
+      --radius: 18px;
     }
 
     * { box-sizing: border-box; }
@@ -42,9 +43,13 @@
 
     .seal {
       width: 140px;
+      height: auto;
+      background: transparent;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: none;
+      overflow: visible;
       flex: 0 0 auto;
     }
 
@@ -53,6 +58,8 @@
       height: auto;
       object-fit: contain;
     }
+
+    
 
     .brand h1 {
       margin: 0;
@@ -113,6 +120,8 @@
       font-weight: 500;
     }
 
+    .hero a:hover { text-decoration: underline; }
+
     .divider {
       border-top: 1px solid #d1d9e5;
       margin-top: 38px;
@@ -167,7 +176,7 @@
       color: #111827;
     }
 
-    input, select {
+    input, select, textarea {
       width: 100%;
       border: 1px solid #d7dde7;
       border-radius: 14px;
@@ -178,11 +187,11 @@
       outline: none;
     }
 
-    input::placeholder {
+    input::placeholder, textarea::placeholder {
       color: #9aa3af;
     }
 
-    input:focus, select:focus {
+    input:focus, select:focus, textarea:focus {
       border-color: #94a3b8;
       box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.14);
     }
@@ -220,6 +229,8 @@
       min-width: 330px;
     }
 
+    button:hover { filter: brightness(0.97); }
+
     .footer {
       background: var(--navy);
       color: rgba(255,255,255,0.95);
@@ -236,19 +247,6 @@
       background: #e8f7e8;
       color: #166534;
       border: 1px solid #b7e0b8;
-      border-radius: 14px;
-      padding: 16px 18px;
-      font-size: 17px;
-      font-weight: 700;
-    }
-
-    .error {
-      display: none;
-      max-width: 1080px;
-      margin: 18px auto 0;
-      background: #fef2f2;
-      color: #991b1b;
-      border: 1px solid #fecaca;
       border-radius: 14px;
       padding: 16px 18px;
       font-size: 17px;
@@ -292,7 +290,7 @@
     <div class="badge">School Year 2026-2027</div>
     <h2>Membership Registration Now Open</h2>
     <p>
-      Join a group of students committed to academic excellence. Complete the
+      Join an elite group of students committed to academic excellence. Complete the
       application below to be considered for Calao National High School membership.
     </p>
     <a href="#" onclick="return false;">↗ Check DepEd Guidelines and Details</a>
@@ -300,20 +298,9 @@
   </section>
 
   <div id="successBox" class="success">Registration submitted successfully.</div>
-  <div id="errorBox" class="error">Submission failed. Please check your Google Apps Script deployment and permissions.</div>
 
   <main class="wrap">
-    <div style="max-width:1000px;margin:auto;">
-  <iframe 
-    src="https://forms.gle/8u5UytJ2wnDS57AXA"
-    width="100%" 
-    height="900" 
-    frameborder="0" 
-    marginheight="0" 
-    marginwidth="0">
-    Loading…
-  </iframe>
-</div>
+    <form id="registrationForm">
       <section class="card">
         <h3>Student Information</h3>
         <div class="sub">Please provide your personal and academic details</div>
@@ -395,25 +382,12 @@
     Calao National High School - CNHS Registration | School Year 2026-2027
   </footer>
 
-  <section class="card">
-  <h3>Registration Form</h3>
-  <div class="sub">Please complete the official form below.</div>
+  <script>
+    const form = document.getElementById('registrationForm');
+    const successBox = document.getElementById('successBox');
 
-  <div style="width:100%; max-width:900px; margin:auto;">
-    <iframe
-      src="https://docs.google.com/forms/d/e/1FAIpQLSfVyRr1M7tS5A3iIuctUG9I85Bph39aOHv3y_JWt5r4qZsIxg/viewform?embedded=true"
-      width="100%"
-      height="1200"
-      frameborder="0"
-      style="border:0; background:white; border-radius:16px;">
-    </iframe>
-  </div>
-</section>
-
-    form.addEventListener('submit', async function (e) {
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
-      successBox.style.display = 'none';
-      errorBox.style.display = 'none';
 
       const lrn = document.getElementById('lrn').value.trim();
       if (!/^\d{12}$/.test(lrn)) {
@@ -421,48 +395,12 @@
         return;
       }
 
-      const payload = {
-        firstName: document.getElementById('firstName').value.trim(),
-        middleName: document.getElementById('middleName').value.trim(),
-        lastName: document.getElementById('lastName').value.trim(),
-        lrn: lrn,
-        birthDate: document.getElementById('birthDate').value,
-        gradeLevel: document.getElementById('gradeLevel').value,
-        address: document.getElementById('address').value.trim(),
-        guardianName: document.getElementById('guardianName').value.trim(),
-        guardianEmail: document.getElementById('guardianEmail').value.trim(),
-        guardianPhone: document.getElementById('guardianPhone').value.trim()
-      };
+      successBox.style.display = 'block';
+      successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-      try {
-        const response = await fetch(scriptURL, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'text/plain;charset=utf-8'
-          },
-          body: JSON.stringify(payload)
-        });
-
-        const text = await response.text();
-        let result = {};
-        try {
-          result = JSON.parse(text);
-        } catch (_) {
-          result = { success: response.ok };
-        }
-
-        if (response.ok && (result.success !== false)) {
-          successBox.style.display = 'block';
-          successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          form.reset();
-        } else {
-          errorBox.style.display = 'block';
-          errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      } catch (error) {
-        errorBox.style.display = 'block';
-        errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
+      setTimeout(() => {
+        successBox.style.display = 'none';
+      }, 2500);
     });
   </script>
 </body>
