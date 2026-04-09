@@ -395,11 +395,20 @@
     Calao National High School - CNHS Registration | School Year 2026-2027
   </footer>
 
-  <script>
-    const form = document.getElementById('registrationForm');
-    const successBox = document.getElementById('successBox');
-    const errorBox = document.getElementById('errorBox');
-    const scriptURL = "https://script.google.com/macros/s/AKfycbynHa16-UpECuS2Pf6R78_X9qCRjifMJAd4UR63n-itTufTYlSqWFN9_Ea-krJ9ysfLBg/exec";
+  <section class="card">
+  <h3>Registration Form</h3>
+  <div class="sub">Please complete the official form below.</div>
+
+  <div style="width:100%; max-width:900px; margin:auto;">
+    <iframe
+      src="https://docs.google.com/forms/d/e/1FAIpQLSfVyRr1M7tS5A3iIuctUG9I85Bph39aOHv3y_JWt5r4qZsIxg/viewform?embedded=true"
+      width="100%"
+      height="1200"
+      frameborder="0"
+      style="border:0; background:white; border-radius:16px;">
+    </iframe>
+  </div>
+</section>
 
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
