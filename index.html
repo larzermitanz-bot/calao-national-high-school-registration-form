@@ -6,59 +6,80 @@
 <title>Calao NHS Registration</title>
 
 <style>
-body { font-family: Arial; margin:0; background:#f5f5f5; }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #eef2f7;
+}
 
+/* HEADER */
 header {
-    background: linear-gradient(to right,#0d47a1,#1976d2);
-    color:white;
-    text-align:center;
-    padding:20px;
+    background: #0d47a1;
+    color: white;
+    text-align: center;
+    padding: 20px;
 }
 
 .logo {
-    width:90px;
-    display:block;
-    margin:auto;
+    width: 80px;
+    margin-bottom: 10px;
 }
 
-.container { display:flex; }
-
-.form-section { flex:1; padding:20px; }
-
-.live-panel {
-    flex:1;
-    padding:20px;
-    border-left:2px solid #ccc;
-    background:white;
+/* CARD DESIGN */
+.main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
 }
 
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* INPUT */
 input {
-    width:100%;
-    padding:10px;
-    margin-bottom:10px;
-    border:1px solid #ccc;
-    border-radius:6px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
 }
 
+/* BUTTON */
 button {
-    background:#0d47a1;
-    color:white;
-    padding:12px;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: #0d47a1;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-button:hover { background:#1565c0; }
-
-.saved-item {
-    padding:8px;
-    border-bottom:1px solid #ddd;
+button:hover {
+    background: #1565c0;
 }
 
+/* LIVE PANEL */
+.live-box {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* MOBILE */
 @media(max-width:768px){
-    .container{ flex-direction:column; }
-    .live-panel{ border-left:none; border-top:2px solid #ccc; }
+    .grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -67,32 +88,24 @@ button:hover { background:#1565c0; }
 
 <header>
     <img src="logo.png" class="logo">
-    <h1>Calao National High School</h1>
-    <h3>Student Registration Form</h3>
+    <h2>Calao National High School</h2>
+    <p>Student Registration Form</p>
 </header>
 
-<div class="container">
+<div class="main">
 
-<div class="form-section">
-<form id="registration-form">
+<div class="card grid">
 
-<label>LRN:</label>
-<input name="lrn" id="lrn" required>
+<!-- FORM -->
+<div>
+<form id="registrationForm">
 
-<label>Learner Name:</label>
-<input name="name" id="name" required>
-
-<label>Age:</label>
-<input name="age" id="age" required>
-
-<label>Address:</label>
-<input name="address" id="address" required>
-
-<label>Guardian Info:</label>
-<input name="guardian" id="guardian" required>
-
-<label>Schooling Details:</label>
-<input name="school" id="school" required>
+<input name="lrn" id="lrn" placeholder="LRN" required>
+<input name="name" id="name" placeholder="Learner Name" required>
+<input name="age" id="age" placeholder="Age" required>
+<input name="address" id="address" placeholder="Address" required>
+<input name="guardian" id="guardian" placeholder="Guardian Info" required>
+<input name="school" id="school" placeholder="Schooling Details" required>
 
 <button type="submit">Register</button>
 
@@ -101,9 +114,10 @@ button:hover { background:#1565c0; }
 </form>
 </div>
 
-<div class="live-panel">
+<!-- LIVE PANEL -->
+<div class="live-box">
 
-<h2>LIVE Panel</h2>
+<h3>Live Preview</h3>
 
 <p><b>Name:</b> <span id="live-name"></span></p>
 <p><b>LRN:</b> <span id="live-lrn"></span></p>
@@ -111,19 +125,19 @@ button:hover { background:#1565c0; }
 <p><b>Address:</b> <span id="live-address"></span></p>
 <p><b>Guardian:</b> <span id="live-guardian"></span></p>
 
-<h3>Saved Registrations</h3>
+<h4>Saved</h4>
 <div id="saved"></div>
 
 </div>
 
 </div>
 
-<script>
+</div>
 
+<script>
 const scriptURL = "https://script.google.com/macros/s/AKfycbynHa16-UpECuS2Pf6R78_X9qCRjifMJAd4UR63n-itTufTYlSqWFN9_Ea-krJ9ysfLBg/exec";
 
-const form = document.getElementById('registration-form');
-const status = document.getElementById('status');
+const form = document.getElementById('registrationForm');
 
 const lrn = document.getElementById('lrn');
 const name = document.getElementById('name');
@@ -138,8 +152,9 @@ const liveAddress = document.getElementById('live-address');
 const liveGuardian = document.getElementById('live-guardian');
 
 const saved = document.getElementById('saved');
+const status = document.getElementById('status');
 
-let dataList = JSON.parse(localStorage.getItem('dataList')) || [];
+let list = JSON.parse(localStorage.getItem('list')) || [];
 
 function updateLive(){
     liveName.textContent = name.value;
@@ -154,11 +169,11 @@ form.addEventListener('input', updateLive);
 form.addEventListener('submit', async (e)=>{
     e.preventDefault();
 
-    let formData = new FormData(form);
+    const formData = new FormData(form);
 
     try{
-        await fetch(scriptURL,{
-            method:'POST',
+        await fetch(scriptURL, {
+            method: 'POST',
             body: formData
         });
 
@@ -167,36 +182,34 @@ form.addEventListener('submit', async (e)=>{
             lrn: lrn.value
         };
 
-        dataList.push(record);
-        localStorage.setItem('dataList', JSON.stringify(dataList));
+        list.push(record);
+        localStorage.setItem('list', JSON.stringify(list));
 
         display();
 
         form.reset();
         updateLive();
 
-        status.innerText = "Submitted successfully!";
+        status.innerText = "Submitted!";
         status.style.color = "green";
 
     }catch(err){
-        status.innerText = "Submission failed!";
+        status.innerText = "Error!";
         status.style.color = "red";
     }
 });
 
 function display(){
     saved.innerHTML = '';
-    dataList.forEach(d=>{
+    list.forEach(r=>{
         let div = document.createElement('div');
-        div.className = 'saved-item';
-        div.innerText = d.name + " - " + d.lrn;
+        div.innerText = r.name + " - " + r.lrn;
         saved.appendChild(div);
     });
 }
 
 display();
 updateLive();
-
 </script>
 
 </body>
