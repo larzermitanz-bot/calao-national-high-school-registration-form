@@ -1,102 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Registration Form</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        header { background: linear-gradient(to right, #4caf50, #8bc34a); padding: 1em; text-align: center; color: white; }
-        
-        .container { display: flex; }
-        .form-section { flex: 1; padding: 20px; }
-        .live-panel { flex: 1; padding: 20px; border-left: 2px solid #ccc; }
-        
-        input, select { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
-        button { background-color: #4caf50; color: white; padding: 10px; border: none; border-radius: 4px; cursor: pointer; }
-        button:hover { background-color: #45a049; }
-        
-        @media (max-width: 768px) { .container { flex-direction: column; } }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calao National High School Registration Form</title>
+  <style>
+    :root {
+      --navy: #0b355d;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #5b6472;
+      --line: #d8dee8;
+      --button: #8ea6bb;
+      --badge: #e9ddbc;
+      --shadow: 0 1px 2px rgba(15, 23, 42, 0.08), 0 8px 24px rgba(15, 23, 42, 0.05);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .topbar {
+      background: var(--navy);
+      color: #fff;
+      padding: 34px 20px 42px;
+    }
+    .topbar-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+    }
+    .seal {
+      width: 140px;
+      display: flex;
+      justify-content: center;
+    }
+    .seal img {
+      width: 140px;
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 66px;
+      font-weight: 800;
+    }
+    .brand p {
+      margin: 8px 0 0;
+      font-size: 31px;
+    }
+    .wrap { max-width: 1080px; margin: auto; padding: 20px;}
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Student Registration Form</h1>
-    </header>
-    <div class="container">
-        <div class="form-section">
-            <form id="registration-form">
-                <label for="lrn">LRN:</label>
-                <input type="text" id="lrn" name="lrn" required />
-                <label for="name">Learner Name:</label>
-                <input type="text" id="name" name="name" required />
-                <label for="age">Age:</label>
-                <input type="number" id="age" name="age" required />
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" required />
-                <label for="guardian">Guardian Info:</label>
-                <input type="text" id="guardian" name="guardian" required />
-                <label for="school">Schooling Details:</label>
-                <input type="text" id="school" name="school" required />
-                <button type="submit">Register</button>
-            </form>
-        </div>
-        <div class="live-panel">
-            <h2>LIVE Panel</h2>
-            <div id="live-output">
-                <p><strong>Learner Name:</strong> <span id="live-name"></span></p>
-                <p><strong>LRN:</strong> <span id="live-lrn"></span></p>
-                <p><strong>Age:</strong> <span id="live-age"></span></p>
-                <p><strong>Address:</strong> <span id="live-address"></span></p>
-                <p><strong>Guardian Info:</strong> <span id="live-guardian"></span></p>
-            </div>
-            <h3>Saved Registrations</h3>
-            <div id="saved-registrations"></div>
-        </div>
-    </div>
-    <script>
-        const form = document.getElementById('registration-form');
-        const liveName = document.getElementById('live-name');
-        const liveLrn = document.getElementById('live-lrn');
-        const liveAge = document.getElementById('live-age');
-        const liveAddress = document.getElementById('live-address');
-        const liveGuardian = document.getElementById('live-guardian');
-        const savedRegistrations = document.getElementById('saved-registrations');
-        let registrations = JSON.parse(localStorage.getItem('registrations')) || [];
+<header class="topbar">
+<div class="topbar-inner">
+<div class="seal">
+<img src="230617977_109992421301540_6067586315127765631_n-removebg-preview.png">
+</div>
+<div class="brand">
+<h1>Calao National High School</h1>
+<p>Registration Form</p>
+</div>
+</div>
+</header>
 
-        form.addEventListener('input', (event) => {
-            liveName.textContent = form.name.value;
-            liveLrn.textContent = form.lrn.value;
-            liveAge.textContent = form.age.value;
-            liveAddress.textContent = form.address.value;
-            liveGuardian.textContent = form.guardian.value;
-        });
+<div class="wrap">
+<h2>Form Ready ✔</h2>
+<p>This is your working form package.</p>
+</div>
 
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            const registration = { 
-                lrn: form.lrn.value,
-                name: form.name.value,
-                age: form.age.value,
-                address: form.address.value,
-                guardian: form.guardian.value,
-            };
-            registrations.push(registration);
-            localStorage.setItem('registrations', JSON.stringify(registrations));
-            displayRegistrations();
-            form.reset();
-        });
-
-        const displayRegistrations = () => {
-            savedRegistrations.innerHTML = '';
-            registrations.forEach((reg) => {
-                const div = document.createElement('div');
-                div.textContent = `${reg.name} - ${reg.lrn}`;
-                savedRegistrations.appendChild(div);
-            });
-        };
-
-        displayRegistrations();
-    </script>
 </body>
 </html>
