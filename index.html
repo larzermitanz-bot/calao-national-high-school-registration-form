@@ -1,407 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calao National High School Registration Form</title>
-  <style>
-    :root {
-      --navy: #0b355d;
-      --bg: #f1f5f9;
-      --card: #ffffff;
-      --text: #0f172a;
-      --muted: #5b6472;
-      --line: #d8dee8;
-      --button: #8ea6bb;
-      --badge: #e9ddbc;
-      --shadow: 0 1px 2px rgba(15, 23, 42, 0.08), 0 8px 24px rgba(15, 23, 42, 0.05);
-      --radius: 18px;
-    }
-
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
-
-    .topbar {
-      background: var(--navy);
-      color: #fff;
-      padding: 34px 20px 42px;
-    }
-
-    .topbar-inner {
-      max-width: 980px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 24px;
-    }
-
-    .seal {
-      width: 140px;
-      height: auto;
-      background: transparent;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: none;
-      overflow: visible;
-      flex: 0 0 auto;
-    }
-
-    .seal img {
-      width: 140px;
-      height: auto;
-      object-fit: contain;
-    }
-
-    
-
-    .brand h1 {
-      margin: 0;
-      font-size: 66px;
-      line-height: 0.98;
-      letter-spacing: -1.8px;
-      font-weight: 800;
-    }
-
-    .brand p {
-      margin: 8px 0 0;
-      font-size: 31px;
-      color: rgba(255,255,255,0.92);
-      font-weight: 400;
-    }
-
-    .hero {
-      max-width: 980px;
-      margin: 56px auto 22px;
-      text-align: center;
-      padding: 0 20px;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 12px 24px;
-      background: var(--badge);
-      border-radius: 999px;
-      font-size: 20px;
-      font-weight: 500;
-      margin-bottom: 28px;
-    }
-
-    .hero h2 {
-      margin: 0;
-      font-size: 64px;
-      line-height: 1.05;
-      letter-spacing: -1.6px;
-      font-weight: 800;
-    }
-
-    .hero p {
-      max-width: 1080px;
-      margin: 24px auto 0;
-      font-size: 25px;
-      line-height: 1.55;
-      color: var(--muted);
-    }
-
-    .hero a {
-      display: inline-flex;
-      gap: 12px;
-      align-items: center;
-      margin-top: 28px;
-      color: var(--navy);
-      text-decoration: none;
-      font-size: 19px;
-      font-weight: 500;
-    }
-
-    .hero a:hover { text-decoration: underline; }
-
-    .divider {
-      border-top: 1px solid #d1d9e5;
-      margin-top: 38px;
-    }
-
-    .wrap {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 0 20px 60px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      padding: 28px 28px 32px;
-      margin: 24px auto;
-    }
-
-    .card h3 {
-      margin: 0;
-      font-size: 25px;
-      font-weight: 800;
-    }
-
-    .card .sub {
-      margin: 12px 0 28px;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 24px;
-    }
-
-    .field.full { grid-column: 1 / -1; }
-
-    label {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 18px;
-      font-weight: 700;
-      color: #111827;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      border: 1px solid #d7dde7;
-      border-radius: 14px;
-      background: #fff;
-      padding: 18px 18px;
-      font-size: 18px;
-      color: #111827;
-      outline: none;
-    }
-
-    input::placeholder, textarea::placeholder {
-      color: #9aa3af;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: #94a3b8;
-      box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.14);
-    }
-
-    .checkbox-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      font-size: 17px;
-      font-weight: 700;
-      color: #111827;
-    }
-
-    .checkbox-row input {
-      width: 30px;
-      height: 30px;
-      margin: 0;
-      accent-color: var(--navy);
-    }
-
-    .actions {
-      text-align: center;
-      padding-top: 18px;
-    }
-
-    button {
-      background: var(--button);
-      color: #fff;
-      border: none;
-      border-radius: 14px;
-      padding: 19px 38px;
-      font-size: 19px;
-      font-weight: 700;
-      cursor: pointer;
-      min-width: 330px;
-    }
-
-    button:hover { filter: brightness(0.97); }
-
-    .footer {
-      background: var(--navy);
-      color: rgba(255,255,255,0.95);
-      text-align: center;
-      padding: 26px 20px;
-      font-size: 18px;
-      margin-top: 50px;
-    }
-
-    .success {
-      display: none;
-      max-width: 1080px;
-      margin: 18px auto 0;
-      background: #e8f7e8;
-      color: #166534;
-      border: 1px solid #b7e0b8;
-      border-radius: 14px;
-      padding: 16px 18px;
-      font-size: 17px;
-      font-weight: 700;
-    }
-
-    @media (max-width: 1100px) {
-      .brand h1 { font-size: 54px; }
-      .brand p { font-size: 25px; }
-      .hero h2 { font-size: 48px; }
-      .hero p { font-size: 21px; }
-    }
-
-    @media (max-width: 820px) {
-      .topbar-inner { flex-direction: column; text-align: center; }
-      .brand h1 { font-size: 42px; }
-      .brand p { font-size: 22px; }
-      .hero h2 { font-size: 38px; }
-      .hero p { font-size: 18px; }
-      .badge { font-size: 16px; }
-      .grid, .grid-3 { grid-template-columns: 1fr; }
-      button { width: 100%; min-width: 0; }
-      .card { padding: 22px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        header { background: linear-gradient(to right, #4caf50, #8bc34a); padding: 1em; text-align: center; color: white; }
+        
+        .container { display: flex; }
+        .form-section { flex: 1; padding: 20px; }
+        .live-panel { flex: 1; padding: 20px; border-left: 2px solid #ccc; }
+        
+        input, select { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        button { background-color: #4caf50; color: white; padding: 10px; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        
+        @media (max-width: 768px) { .container { flex-direction: column; } }
+    </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="seal" aria-hidden="true">
-        <img src="230617977_109992421301540_6067586315127765631_n-removebg-preview.png" alt="Calao NHS Logo" />
-      </div>
-      <div class="brand">
-        <h1>Calao National High School</h1>
-        <p>Registration Form</p>
-      </div>
+    <header>
+        <h1>Student Registration Form</h1>
+    </header>
+    <div class="container">
+        <div class="form-section">
+            <form id="registration-form">
+                <label for="lrn">LRN:</label>
+                <input type="text" id="lrn" name="lrn" required />
+                <label for="name">Learner Name:</label>
+                <input type="text" id="name" name="name" required />
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required />
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required />
+                <label for="guardian">Guardian Info:</label>
+                <input type="text" id="guardian" name="guardian" required />
+                <label for="school">Schooling Details:</label>
+                <input type="text" id="school" name="school" required />
+                <button type="submit">Register</button>
+            </form>
+        </div>
+        <div class="live-panel">
+            <h2>LIVE Panel</h2>
+            <div id="live-output">
+                <p><strong>Learner Name:</strong> <span id="live-name"></span></p>
+                <p><strong>LRN:</strong> <span id="live-lrn"></span></p>
+                <p><strong>Age:</strong> <span id="live-age"></span></p>
+                <p><strong>Address:</strong> <span id="live-address"></span></p>
+                <p><strong>Guardian Info:</strong> <span id="live-guardian"></span></p>
+            </div>
+            <h3>Saved Registrations</h3>
+            <div id="saved-registrations"></div>
+        </div>
     </div>
-  </header>
+    <script>
+        const form = document.getElementById('registration-form');
+        const liveName = document.getElementById('live-name');
+        const liveLrn = document.getElementById('live-lrn');
+        const liveAge = document.getElementById('live-age');
+        const liveAddress = document.getElementById('live-address');
+        const liveGuardian = document.getElementById('live-guardian');
+        const savedRegistrations = document.getElementById('saved-registrations');
+        let registrations = JSON.parse(localStorage.getItem('registrations')) || [];
 
-  <section class="hero">
-    <div class="badge">School Year 2026-2027</div>
-    <h2>Membership Registration Now Open</h2>
-    <p>
-      Join an elite group of students committed to academic excellence. Complete the
-      application below to be considered for Calao National High School membership.
-    </p>
-    <a href="#" onclick="return false;">↗ Check DepEd Guidelines and Details</a>
-    <div class="divider"></div>
-  </section>
+        form.addEventListener('input', (event) => {
+            liveName.textContent = form.name.value;
+            liveLrn.textContent = form.lrn.value;
+            liveAge.textContent = form.age.value;
+            liveAddress.textContent = form.address.value;
+            liveGuardian.textContent = form.guardian.value;
+        });
 
-  <div id="successBox" class="success">Registration submitted successfully.</div>
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const registration = { 
+                lrn: form.lrn.value,
+                name: form.name.value,
+                age: form.age.value,
+                address: form.address.value,
+                guardian: form.guardian.value,
+            };
+            registrations.push(registration);
+            localStorage.setItem('registrations', JSON.stringify(registrations));
+            displayRegistrations();
+            form.reset();
+        });
 
-  <main class="wrap">
-    <form id="registrationForm">
-      <section class="card">
-        <h3>Student Information</h3>
-        <div class="sub">Please provide your personal and academic details</div>
-        <div class="grid-3">
-          <div class="field">
-            <label for="firstName">First Name *</label>
-            <input id="firstName" name="firstName" placeholder="Juan" required />
-          </div>
-          <div class="field">
-            <label for="middleName">Middle Name</label>
-            <input id="middleName" name="middleName" placeholder="Santos" />
-          </div>
-          <div class="field">
-            <label for="lastName">Last Name *</label>
-            <input id="lastName" name="lastName" placeholder="Dela Cruz" required />
-          </div>
-          <div class="field">
-            <label for="lrn">Learner Reference Number (LRN) *</label>
-            <input id="lrn" name="lrn" placeholder="123456789012" maxlength="12" required />
-          </div>
-          <div class="field">
-            <label for="birthDate">Birth Date *</label>
-            <input id="birthDate" name="birthDate" type="date" required />
-          </div>
-          <div class="field">
-            <label for="gradeLevel">Grade Level *</label>
-            <select id="gradeLevel" name="gradeLevel" required>
-              <option value="">Select grade</option>
-              <option>Grade 7</option>
-              <option>Grade 8</option>
-              <option>Grade 9</option>
-              <option>Grade 10</option>
-              <option>Grade 11</option>
-              <option>Grade 12</option>
-            </select>
-          </div>
-          <div class="field full">
-            <label for="address">Address *</label>
-            <input id="address" name="address" placeholder="Barangay, Municipality, Province" required />
-          </div>
-        </div>
-      </section>
+        const displayRegistrations = () => {
+            savedRegistrations.innerHTML = '';
+            registrations.forEach((reg) => {
+                const div = document.createElement('div');
+                div.textContent = `${reg.name} - ${reg.lrn}`;
+                savedRegistrations.appendChild(div);
+            });
+        };
 
-      <section class="card">
-        <h3>Parent/Guardian Information</h3>
-        <div class="sub">Contact information for your parent or guardian</div>
-        <div class="grid">
-          <div class="field full">
-            <label for="guardianName">Parent/Guardian Name *</label>
-            <input id="guardianName" name="guardianName" placeholder="Full name of parent or guardian" required />
-          </div>
-          <div class="field">
-            <label for="guardianEmail">Parent/Guardian Email *</label>
-            <input id="guardianEmail" name="guardianEmail" type="email" placeholder="parent@email.com" required />
-          </div>
-          <div class="field">
-            <label for="guardianPhone">Parent/Guardian Phone *</label>
-            <input id="guardianPhone" name="guardianPhone" type="tel" placeholder="09XX XXX XXXX" required />
-          </div>
-        </div>
-      </section>
-
-      <section class="card">
-        <h3>Agreement</h3>
-        <div class="sub">Please read and acknowledge the following</div>
-        <label class="checkbox-row">
-          <input type="checkbox" id="agreement" required />
-          <span>I certify that all information provided in this registration is accurate and complete. *</span>
-        </label>
-      </section>
-
-      <div class="actions">
-        <button type="submit">Submit Application</button>
-      </div>
-    </form>
-  </main>
-
-  <footer class="footer">
-    Calao National High School - CNHS Registration | School Year 2026-2027
-  </footer>
-
-  <script>
-    const form = document.getElementById('registrationForm');
-    const successBox = document.getElementById('successBox');
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const lrn = document.getElementById('lrn').value.trim();
-      if (!/^\d{12}$/.test(lrn)) {
-        alert('LRN must contain exactly 12 digits.');
-        return;
-      }
-
-      successBox.style.display = 'block';
-      successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-      setTimeout(() => {
-        successBox.style.display = 'none';
-      }, 2500);
-    });
-  </script>
+        displayRegistrations();
+    </script>
 </body>
 </html>
